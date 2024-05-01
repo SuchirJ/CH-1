@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <title>Document</title>
+</head>
+<body ng-controller="myCtrl">
+    
+    <h1>{{properties.name}}</h1> 
+    <p>{{properties.subject}}</p> 
+    First name: <input type="text" ng-model="firstname"> 
+    <br><br> 
+    Last name: <input type="text" ng-model="lastname"> 
+    <br><br> 
+    Hello {{ displayname() }} 
+
+    <script>
+
+    var app = angular.module("myApp",[]);
+    app.controller("myCtrl",function($scope){
+        $scope.properties = {
+            "name":"Controller",
+            "subject":"AngularJS"
+        };
+        $scope.displayname = function () { 
+            return $scope.firstname + " " + $scope.lastname; 
+        };
+    });
+
+    </script>
+</body>
+</html>
+
+<!-- Here the scope properties are display. -->
+<!-- In AngularJS, the scope is an object that serves as the context in which data is bound between the 
+controller (JavaScript) and the view (HTML).  
+• It acts as a bridge between the two, allowing the controller to communicate with the view and vice 
+versa.   -->

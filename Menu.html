@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="orderFormApp">
+  <head>
+    <title>Order Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+      var app = angular.module("orderFormApp", []);
+
+      app.controller("OrderFormController", function ($scope) {
+        $scope.products = [
+          { name: "Product 1", price: 10 },
+          { name: "Product 2", price: 20 },
+          { name: "Product 3", price: 30 },
+          { name: "Product 4", price: 40 },
+          { name: "Product 5", price: 50 },
+        ];
+
+        $scope.order = [];
+
+        $scope.updateTotal = function () {
+          var total = 0;
+          angular.forEach($scope.order, function (item) {
+            total += item.quantity * item.product.price;
+          });
+          $scope.total = total;
+          $scope.totalWithGST = total + total * 0.18; // Assuming GST rate of 18%
+        };
+
+        $scope.addToOrder = function (product) {
+          var found = false;
+          angular.forEach($scope.order, function (item) {
+            if (item.product.name === product.name) {
+              item.quantity++;
+              found = true;
+            }
+          });
+          if (!found) {
+            $scope.order.push({ product: product, quantity: 1 });
+          }
+          $scope.updateTotal();
+        };
+
+        $scope.removeFromOrder = function (index) {
+          $scope.order.splice(index, 1);
+          $scope.updateTotal();
+        };
+      });
+    </script>
+  </head>
+  <body ng-controller="OrderFormController">
+    <h1>Order Form</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in order">
+          <td>{{ item.product.name }}</td>
+          <td>{{ item.product.price | currency }}</td>
+          <td> <input type="number" ng-model="item.quantity" ng-change="updateTotal()"/></td>
+          <td>{{ item.product.price * item.quantity | currency }}</td>
+          <td><button ng-click="removeFromOrder($index)">Remove</button></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">Total (before GST):</td>
+          <td>{{ total | currency }}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="3">Total (with GST 18%):</td>
+          <td>{{ totalWithGST | currency }}</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <h2>Available Products</h2>
+    <ul>
+      <li ng-repeat="product in products">
+        {{ product.name }} - {{ product.price | currency }}
+        <button ng-click="addToOrder(product)">Add to Order</button>
+      </li>
+    </ul>
+  </body>
+</html>

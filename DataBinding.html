@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <title>Document</title>
+</head>
+<body ng-controller="myCtrl">
+    Firstname: <input type="text" ng-bind="firstname"></strong> 
+    <br>
+    <!-- <p>First name: {{firstname}}</p> --> 
+    Lastname: <input type="text" ng-model="lastname"> <br><br>
+
+    Fullname: <h2> {{firstname + " " + lastname}} </h2>
+
+    <script>
+
+        var app = angular.module("myApp",[]);
+        app.controller("myCtrl",function($scope){
+            $scope.firstname = "Suchir";
+            $scope.lastname = "Jolapara"
+        });
+
+    </script>
+</body>
+</html>
+
+<!-- 
+
+------Single Way Binding:------
+
+Where the innerHTML of element is binded by a specified model property. Used "ng-bind".
+
+------Two Way Binding:------
+
+When data in the model changes, the view reflects the change, and when data in the view changes, the model is updated as well.This happens immediately and automatically, which makes sure that the model and the view is updated at all times. Uses "ng-model". 
+
+-->

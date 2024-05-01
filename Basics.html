@@ -1,0 +1,26 @@
+<!-- Use of Controller and Scope -->
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        {{ firstname + " " + lastname }}
+    </div>
+
+    <script>
+
+        angular.module('myApp',[]).controller('myCtrl',function($scope){
+            $scope.firstname = "Suchir";
+            $scope.lastname = "Jolapara";
+        });
+
+    </script>
+
+</body>
+</html>
+
+<!-- The scope is the binding part between the HTML (view) and the JavaScript (controller).
+The scope is an object with the available properties and methods. -->

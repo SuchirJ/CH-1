@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <title>Document</title>
+</head>
+<body ng-controller="myCtrl">
+    
+    <h1>Student Marks List</h1>
+    <div>
+        <ul>
+            <li ng-repeat="item in marks">Subject {{$index+1}} : {{item}} </li>
+        </ul>
+    </div>
+
+    <script>
+
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function($scope) {
+        $scope.marks = [95, 52, 65, 98, 55, 35];
+    });
+
+    </script>
+</body>
+</html>
+
+<!-- Here "ng-repeat" directive is used to display all the elements of array in the list. -->

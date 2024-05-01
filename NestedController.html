@@ -1,0 +1,49 @@
+<!-- Here three controllers are created and then 'Nested' in <body> and displayed its working. -->
+    
+<html ng-app="myApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div ng-controller="parentController"> 
+        <div ng-controller="childController"> 
+            <div ng-controller="subtopicsController">
+                <h1>{{title}}</h1> 
+                <p>Topics:</p>
+                <div>
+                    <ul>
+                        <li ng-repeat="item in topics"> {{item}} </li>
+                    </ul>
+                </div>
+                <div>
+                    <p>Subtopics:</p>
+                    <ul>
+                        <li ng-repeat="item in subtopics"> {{item}} </li>
+                    </ul>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []); 
+        app.controller("parentController", function ($scope) { 
+            $scope.title = "This is parent controller."; 
+        });
+        app.controller("childController", function ($scope) { 
+            $scope.topics = ["Expressions", "Modules", "Controllers"];
+        });  
+        app.controller("subtopicsController", function ($scope) {
+            $scope.subtopics = [
+              "What are expressions?",  
+              "How are they used in data binding?",  
+              "What are modules in AngularJS?",  
+              "What is their importance?",  
+              "What are controllers?",  
+              "What are nested controllers?"
+            ];
+        });
+    </script>
+</body>
+</html>

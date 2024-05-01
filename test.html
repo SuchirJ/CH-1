@@ -1,0 +1,15 @@
+<html ng-app="">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div>Sum of 10 and 20 is : {{10+20}} </div>
+    <div>
+        Write some text in textbox: <input type="text" ng-model="sometext"> <!-- ng-model: binds the data two way -->
+        <h1> Welcome {{ sometext }} </h1> 
+        <h4>Uppercase: {{ sometext | uppercase }}</h4>  
+        <h4>Lowercase: {{ sometext | lowercase }}</h4>   
+    </div>
+</body>
+</html>

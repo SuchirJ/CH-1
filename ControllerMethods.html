@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <title>Document</title>
+</head>
+<body ng-controller="myCtrl">
+    
+    First Name: <input type="text" ng-model="firstName"><br>
+    Last Name: <input type="text" ng-model="lastName"><br>
+    <br>
+    Full Name: {{fullName()}}
+
+    <script>
+
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+    $scope.fullName = function(){
+        return $scope.firstName + " " + $scope.lastName;
+    }
+    });
+
+    </script>
+
+</body>
+</html>
+
+<!-- Here an function is used in the controller to return the value when called in <body> bt "fullName()" -->
